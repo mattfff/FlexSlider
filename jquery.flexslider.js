@@ -574,7 +574,7 @@
             // SMOOTH HEIGHT:
             methods.smoothHeight();
           } else if (carousel) { //CAROUSEL:
-            slider.slides.width(slider.computedW);
+            slider.slides.outerWidth(slider.computedW);
             slider.update(slider.pagingCount);
             slider.setProps();
           }
@@ -584,7 +584,7 @@
           } else {
             // SMOOTH HEIGHT:
             if (slider.vars.smoothHeight) { methods.smoothHeight(); }
-            slider.newSlides.width(slider.computedW);
+            slider.newSlides.outerWidth(slider.computedW);
             slider.setProps(slider.computedW, "setTotal");
           }
         }
@@ -972,12 +972,6 @@
       slider.w = (slider.viewport===undefined) ? slider.width() : slider.viewport.width();
       slider.h = slide.height();
 
-      if(slide.css('box-sizing') !== 'border-box') {
-        slider.boxPadding = slide.outerWidth() - slide.width();
-      } else {
-        slider.boxPadding = 0;
-      }
-
       // CAROUSEL:
       if (carousel) {
         slider.itemT = slider.vars.itemWidth + slideMargin;
@@ -1000,7 +994,7 @@
         slider.pagingCount = slider.count;
         slider.last = slider.count - 1;
       }
-      slider.computedW = slider.itemW - slider.boxPadding;
+      slider.computedW = slider.itemW;
       slider.computedM = slider.itemM;
     };
 
