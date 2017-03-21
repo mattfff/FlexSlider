@@ -971,7 +971,12 @@
 
       slider.w = (slider.viewport===undefined) ? slider.width() : slider.viewport.width();
       slider.h = slide.height();
-      slider.boxPadding = slide.outerWidth() - slide.width();
+
+      if(slide.css('box-sizing') !== 'border-box') {
+        slider.boxPadding = slide.outerWidth() - slide.width();
+      } else {
+        slider.boxPadding = 0;
+      }
 
       // CAROUSEL:
       if (carousel) {
